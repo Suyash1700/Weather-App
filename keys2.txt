@@ -1,0 +1,6 @@
+# tomorrow_api:
+#   api_key: "iF22ZvwnCLNqJehEV3HVa4ZCW48IM0dR"
+
+# Rhushu
+tomorrow_api:
+  api_key: "ggfMH0ZC8u9NIzUhzKmkSDZI3kq7dSUs"

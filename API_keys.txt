@@ -1,0 +1,19 @@
+Google maps (geocoding): AIzaSyAeqQ8vpfsXYxVixIgIhHmwARL7wp09ERU
+Tomorrow API: iF22ZvwnCLNqJehEV3HVa4ZCW48IM0dR
+
+
+
+Python tomorrow api call
+
+import requests
+
+url = "https://api.tomorrow.io/v4/timelines?location=42.3478%2C%20-71.0466&fields=temperature&units=metric&timesteps=1h&startTime=now&endTime=nowPlus6h"
+
+headers = {
+    "accept": "application/json",
+    "Accept-Encoding": "gzip"
+}
+
+response = requests.get(url, headers=headers)
+
+print(response.text)

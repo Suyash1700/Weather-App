@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="static/styles.css">
+        <title>Weather App</title>
+        
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/highcharts-more.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+        <script src="https://code.highcharts.com/modules/datagrouping.js"></script>
+        <script src="https://code.highcharts.com/modules/windbarb.js"></script>
+        <script src="https://code.highcharts.com/modules/pattern-fill.js"></script>
+        <script src="https://code.highcharts.com/modules/data.js"></script>
+    </head>
+    <body>
+        <div class="body-container">
+            <div class="form-container">
+                <div class="form-header">
+                    <div class="form-header-text-wrap">
+                        <span class="form-header-text1">Weather Search</span> <br><br>
+                        <span class="form-header-text2">Fill out the form to get weather info !</span>
+                    </div>
+                </div>
+                <div class="form-form-container">
+                    <form id="my-weather-data" onsubmit="event.preventDefault();submit_handler();">
+                        <div class="form-form-section-1">
+                                <label for="street-input" d="label-street">Street<span id="required">*</span></label> <br>
+                                <input type="text" id="street-input" name="street-input" required>
+                                
+                                <div class="dummy-div">
+                                    <label for="city-input" id="label-city">City<span id="required">*</span></label>
+                                    <label for="state-input" id="label-state">State<span id="required">*</span></label> <br>
+                                    <input type="text" id="city-input" name="city-input" required/>
+                                
+                                    <select id="state-input" name="state-input" required>
+                                        <option value="" selected>Select a state</option>
+                                    </select>
+                                </div>
+                        </div>
+                        <hr class="form-hr">
+                        <div class="form-form-section-2">
+                            <span id="location-text">
+                                Want us to auto-detect your location? Check here
+                                <input type="checkbox" id="location-checkbox" name="location-checkbox">
+                            </span>
+                            <br>
+                            <button type="submit" class="form-btn submit-btn">SUBMIT</button>
+                            <button type="reset" class="form-btn clear-btn">CLEAR</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="no-records">
+                    No records have been found.
+                </div>             
+            </div>
+
+            <div class="weather-card">
+                <div class="card-location-title">
+                    Long Beach, California
+                </div>
+                <div class="card-weather-temp">
+                    <div class="weather-card-l1">
+                        <div>
+                            <img src="" alt="weather-icon" class="weather-icon-day"/>
+                        </div>
+                        <div class="weather-temp-text">
+                            <span class="temp-val-text">68</span>&deg;
+                        </div>
+                    </div>
+                    <div class="weather-card-l2">
+                        Mostly clear
+                    </div>
+                </div>
+                <div class="card-weather-details">
+                    <div class="humidity weather-details-col">
+                        <div class="inner-div">Humidity</div>
+                        <div class="inner-div"><img src="static/images/humidity.png" alt="Humidity icon" class="weather-details-img"></div>
+                        <div class="inner-div" id="humidity-value">74%</div>
+                    </div>
+                    <div class="pressure weather-details-col">
+                        <div class="inner-div">Pressure</div>
+                        <div class="inner-div"><img src="static/images/Pressure.png" alt="Pressure icon" class="weather-details-img"></div>
+                        <div class="inner-div" id="pressure-value">29.73inHg</div>
+                    </div>
+                    <div class="wind-speed weather-details-col">
+                        <div class="inner-div">Wind Speed</div>
+                        <div class="inner-div"><img src="static/images/Wind_Speed.png" alt="Wind_Speed icon" class="weather-details-img"></div>
+                        <div class="inner-div" id="wind-speed-value">7.41mph</div>
+                    </div>
+                    <div class="visibility weather-details-col">
+                        <div class="inner-div">Visibility</div>
+                        <div class="inner-div"><img src="static/images/Visibility.png" alt="Visibility icon" class="weather-details-img"></div>
+                        <div class="inner-div" id="visibility-value">9.94mi</div>
+                    </div>
+                    <div class="cloud-cover weather-details-col">
+                        <div class="inner-div">Cloud Cover</div>
+                        <div class="inner-div"><img src="static/images/Cloud_Cover.png" alt="Cloud_Cover icon" class="weather-details-img"></div>
+                        <div class="inner-div" id="cloud-cover-value">16%</div>
+                    </div>
+                    <div class="uv-level weather-details-col">
+                        <div class="inner-div">UV Level</div>
+                        <div class="inner-div"><img src="static/images/UV_Level.png" alt="UV_Level icon" class="weather-details-img"></div>
+                        <div class="inner-div" id="uv-level-value">0</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dummy-table-encloser">
+                <div class="weather-table-forecast">
+                    <div class="table-header-row">
+                        <div class="col-1">
+                            Date
+                        </div>
+                        <div class="col-2">
+                            Status
+                        </div>
+                        <div class="col-3">
+                            Temp High
+                        </div>
+                        <div class="col-4">
+                            Temp Low
+                        </div>
+                        <div class="col-5">
+                            Wind Speed
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-specific-container">
+                <div class="daily-weather-title">
+                    Daily Weather Details
+                    <hr class="white-hr-card"/>
+                </div>
+
+                <div class="day-specific-card">
+                    <div class="weather-card-header-specific">
+                        <div class="header-left-specific">
+                            <div class="date-specific">Wednesday, 11 Sep 2024</div>
+                            <div class="status-specific">Mostly Clear</div>
+                            <div class="temperature-specific">71.6°F/64.22°F</div>
+                        </div>
+                        <div class="header-right-specific">
+                            <img src="" alt="Weather Icon" class="weather-icon-specific">
+                        </div>
+                    </div>
+                    <div class="lower-half">
+                        <div class="details-list-keys">
+                            <p>Precipitation: </p>
+                            <p>Chance of Rain: </p>
+                            <p>Wind Speed: </p>
+                            <p>Humidity: </p>
+                            <p>Visibility: </p>
+                            <p>Sunrise/Sunset: </p>
+                        </div>
+                        <div class="details-list-values">
+                            <p class="precipitation-listval">N/A</p>
+                            <p class="chance-rain-listval">0%</p>
+                            <p class="wind-speed-listval">9.65 mph</p>
+                            <p class="humidity-listval">85.91%</p>
+                            <p class="visibility-listval">9.94 mi</p>
+                            <p class="sunrise-sunset-listval">1PM/2AM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="weather-charts-nav">
+                    Weather Charts
+                    <hr class="white-hr-card"/>
+                </div>
+
+                <div class="down-button-div" onclick="displayCharts()">
+                    <img src="static/images/point-down-512.png" alt="point down img" class="charts-pointer-down">
+                </div>
+                <div class="up-button-div" onclick="removeCharts()">
+                    <img src="static/images/point-up-512.png" alt="point up img" class="charts-pointer-up">
+                </div>
+            </div>
+
+            <div class="charts-container">
+                <figure class="highcharts-figure-1" style="margin-bottom: 20px;">
+                    <div id="chart-1-container"></div>
+                </figure>
+
+                <figure class="highcharts-figure-2">
+                    <div id="chart-2-container"></div>
+                </figure>
+            </div>
+            
+
+        </div>
+
+        <script src="static/script.js"></script>
+    </body>
+</html>
