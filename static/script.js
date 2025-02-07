@@ -166,7 +166,7 @@ function set_card_details(location_str)
 
 async function get_ip_info()
 {
-    const ip_info_token = '06c2760eaea528';
+    const ip_info_token = 'YOUR IP INFO TOKEN';
 	let url = `https://ipinfo.io/?token=${ip_info_token}`;
 	try
 	{
@@ -187,7 +187,7 @@ async function get_ip_info()
 
 async function get_geocoding_info(street_val, city_val, state_val)
 {
-    const geocoding_api_key = 'AIzaSyAeqQ8vpfsXYxVixIgIhHmwARL7wp09ERU';
+    const geocoding_api_key = 'YOUR GOOGLE MAP API KEY';
     let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${street_val}, ${city_val}, ${state_val}&key=${geocoding_api_key}`;
     try
 	{
