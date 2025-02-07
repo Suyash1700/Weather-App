@@ -2,7 +2,7 @@ runtime: python39
 entrypoint: gunicorn -b :$PORT app:app
 
 env_variables:
-  TOMORROW_API_KEY: "iF22ZvwnCLNqJehEV3HVa4ZCW48IM0dR"
+  TOMORROW_API_KEY: "YOUR API KEY"
 
 handlers:
   - url: /static
